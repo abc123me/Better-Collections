@@ -188,4 +188,3 @@ public class Grid<T>{
 		if(height <= 0) throw new InvalidSizeException(height);
 	}
 }
-class InvalidSizeException extends RuntimeException{public InvalidSizeException(int size){super("Invalid size " + size);}}
