@@ -18,7 +18,7 @@ public class Vector3 extends Vector2{
 	/**
 	 * The z value of the vector as a float
 	 */
-	float z = 0;
+	public float z = 0;
 	/**
 	 * Makes a pre-defined vector3
 	 * @param x
