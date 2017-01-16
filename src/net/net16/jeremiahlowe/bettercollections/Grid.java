@@ -212,7 +212,7 @@ public class Grid<T>{
 	public boolean isPerfectSquare(){
 		return width == height;
 	}
-	/**
+	/** 
 	 * Method for verifying a new size
 	 * @param width
 	 * The width
