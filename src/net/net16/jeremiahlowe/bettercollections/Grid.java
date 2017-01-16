@@ -1,5 +1,7 @@
 package net.net16.jeremiahlowe.bettercollections;
 
+import net.net16.jeremiahlowe.bettercollections.vector.Vector2;
+
 /**
  * Grid for holding values of a specified type
  * @author 
@@ -20,8 +22,7 @@ public class Grid<T>{
 	 */
 	@SuppressWarnings("unchecked")
 	public Grid(int width, int height){
-		if(width <= 0) throw new InvalidSizeException(width);
-		if(height <= 0) throw new InvalidSizeException(height);
+		verifySize(width, height);
 		this.width = width;
 		this.height = height;
 		values = (T[][]) new Object[width][height];
@@ -48,6 +49,26 @@ public class Grid<T>{
 	}
 	/**
 	 * Sets a value at a specified location
+	 * @param loc
+	 * The location in vector form
+	 * @param val
+	 * The value to set of type T
+	 */
+	public void set(Vector2 loc, T val){
+		values[(int) loc.x][(int) loc.y] = val;
+	}
+	/**
+	 * Gets a value at a specified location
+	 * @param loc
+	 * The location in vector form
+	 * @return
+	 * The value at said location
+	 */
+	public T get(Vector2 loc){
+		return values[(int) loc.x][(int) loc.y];
+	}
+	/**
+	 * Sets a value at a specified location
 	 * @param x
 	 * The location on the x axis
 	 * @param y
@@ -66,7 +87,7 @@ public class Grid<T>{
 			for(int y = 0; y < height; y++) values[x][y] = null;
 	}
 	/**
-	 * Resizes the grid and <bold>keeps all data</bold>
+	 * Resizes the grid and <bold>keeps all data possible</bold>
 	 * @param newWidth
 	 * The new width of the grid
 	 * @param newHeight
@@ -88,6 +109,14 @@ public class Grid<T>{
 		values = newValues;
 	}
 	/**
+	 * Resizes the grid and <bold>keeps all data possible</bold>
+	 * @param size
+	 * The new size in vector form
+	 */
+	public void resize(Vector2 size){
+		resize((int) size.x, (int) size.y);
+	}
+	/**
 	 * Returns the width of the grid
 	 * @return
 	 * The width
@@ -104,7 +133,15 @@ public class Grid<T>{
 		return height;
 	}
 	/**
-	 * Resizes the grid and <bold>keeps all data</bold> (it can)
+	 * Returns the size of the grid as a Vector2
+	 * @return
+	 * The size
+	 */
+	public Vector2 getSize(){
+		return new Vector2(getWidth(), getHeight());
+	}
+	/**
+	 * Resizes the grid and <bold>keeps all data possible</bold>
 	 * @param size
 	 * The new width and height of the grid
 	 */
@@ -114,7 +151,6 @@ public class Grid<T>{
 	/**
 	 * Gets the contents of the grid as a string
 	 * @return
-	 * As a string
 	 */
 	public String getContentsAsString(){
 		String out = "";
@@ -138,7 +174,7 @@ public class Grid<T>{
 	 * @return
 	 * The internal values array
 	 */
-	public Object[][] toMultidimensionalArray(){
+	public T[][] toMultidimensionalArray(){
 		return values;
 	}
 	/**
@@ -177,14 +213,20 @@ public class Grid<T>{
 		return width == height;
 	}
 	/**
-	 * Internal method for verifying a new size
+	 * Method for verifying a new size
 	 * @param width
 	 * The width
 	 * @param height
 	 * The height
 	 */
-	private static final void verifySize(int width, int height){
-		if(width <= 0) throw new InvalidSizeException(width);
-		if(height <= 0) throw new InvalidSizeException(height);
+	public static void verifySize(int width, int height){
+		if(width <= 0 || height <= 0) throw new ArrayIndexOutOfBoundsException("Invalid size: " + width + "x" + height);
+	}
+	/**
+	 * Returns the area or amount of elements in the grid
+	 * @return
+	 */
+	public int elements(){
+		return getWidth() * getHeight();
 	}
 }
