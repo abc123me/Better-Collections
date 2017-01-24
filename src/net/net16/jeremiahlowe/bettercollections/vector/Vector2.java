@@ -58,6 +58,20 @@ public class Vector2 {
 		return y;
 	}
 	/**
+	 * Returns the x value of the vector2 as an integer (rounded)
+	 * @return
+	 */
+	public int getXI(){
+		return Math.round(x);
+	}
+	/**
+	 * Returns the y value of the vector2 as an integer (rounded)
+	 * @return
+	 */
+	public int getYI(){
+		return Math.round(y);
+	}
+	/**
 	 * Sets x the x value of the vector2
 	 * @param x
 	 */

@@ -70,6 +70,11 @@ public class Vector3 extends Vector2{
 	 */
 	public float getZ(){return z;}
 	/**
+	 * Gets the z value as an integer (rounded)
+	 * @return
+	 */
+	public int getZI(){return Math.round(z);}
+	/**
 	 * Gets the distance between two vectors
 	 * @param a
 	 * @param b
