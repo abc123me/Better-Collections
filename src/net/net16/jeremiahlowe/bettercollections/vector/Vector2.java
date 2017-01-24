@@ -6,7 +6,7 @@ package net.net16.jeremiahlowe.bettercollections.vector;
  * @author Jeremiah Lowe
  *
  */
-public class Vector2 {
+public class Vector2 implements Cloneable{
 	public static final Vector2 UP = new Vector2(0, 1);
 	public static final Vector2 DOWN = new Vector2(0, -1);
 	public static final Vector2 LEFT = new Vector2(-1, 0);
