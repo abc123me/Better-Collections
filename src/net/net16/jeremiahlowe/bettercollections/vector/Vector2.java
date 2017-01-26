@@ -128,4 +128,40 @@ public class Vector2 implements Cloneable{
 	public Vector2 clone(){
 		return new Vector2(x, y);
 	}
+	/**
+	 * Adds this vector to antother vector
+	 * @param b
+	 * @return
+	 * The result of this + b
+	 */
+	public Vector2 add(Vector2 b){
+		return new Vector2(x + b.x, y + b.y);
+	}
+	/**
+	 * Subtracts this vector by another vector
+	 * @param b
+	 * @return
+	 * The result of this - b
+	 */
+	public Vector2 subtract(Vector2 b){
+		return new Vector2(x - b.x, y - b.y);
+	}
+	/**
+	 * Adds this vector a to vector b
+	 * @param b
+	 * @return
+	 * The result of a + b
+	 */
+	public static Vector2 add(Vector2 a, Vector2 b){
+		return new Vector2(a.x + b.x, a.y + b.y);
+	}
+	/**
+	 * Subtracts vector a by vector b
+	 * @param b
+	 * @return
+	 * The result of a - b
+	 */
+	public static Vector2 subtract(Vector2 a, Vector2 b){
+		return new Vector2(a.x - b.x, a.y - b.y);
+	}
 }

@@ -120,4 +120,40 @@ public class Vector3 extends Vector2 implements Cloneable{
 	public Vector3 clone(){
 		return new Vector3(x, y, z);
 	}
+	/**
+	 * Adds this vector to antother vector
+	 * @param b
+	 * @return
+	 * The result of this + b
+	 */
+	public Vector3 add(Vector3 b){
+		return new Vector3(x + b.x, y + b.y, z + b.z);
+	}
+	/**
+	 * Subtracts this vector by another vector
+	 * @param b
+	 * @return
+	 * The result of this - b
+	 */
+	public Vector3 subtract(Vector3 b){
+		return new Vector3(x - b.x, y - b.y, z - b.z);
+	}
+	/**
+	 * Adds this vector a to vector b
+	 * @param b
+	 * @return
+	 * The result of a + b
+	 */
+	public static Vector3 add(Vector3 a, Vector3 b){
+		return new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
+	}
+	/**
+	 * Subtracts vector a by vector b
+	 * @param b
+	 * @return
+	 * The result of a - b
+	 */
+	public static Vector3 subtract(Vector3 a, Vector3 b){
+		return new Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
+	}
 }
