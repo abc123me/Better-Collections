@@ -111,4 +111,13 @@ public class Vector3 extends Vector2 implements Cloneable{
 		out.z = (a.z + b.z) / 2;
 		return out;
 	}
+	/**
+	 * Makes a new vector with the same values as the vector that was cloned
+	 * @return the new vector
+	 * @see Cloneable
+	 */
+	@Override
+	public Vector3 clone(){
+		return new Vector3(x, y, z);
+	}
 }

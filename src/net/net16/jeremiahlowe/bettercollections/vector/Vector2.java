@@ -119,4 +119,13 @@ public class Vector2 implements Cloneable{
 		out.y = (a.y + b.y) / 2;
 		return out;
 	}
+	/**
+	 * Makes a new vector with the same values as the vector that was cloned
+	 * @return the new vector
+	 * @see Cloneable
+	 */
+	@Override
+	public Vector2 clone(){
+		return new Vector2(x, y);
+	}
 }
