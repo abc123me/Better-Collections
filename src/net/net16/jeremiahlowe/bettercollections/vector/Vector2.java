@@ -164,4 +164,11 @@ public class Vector2 implements Cloneable{
 	public static Vector2 subtract(Vector2 a, Vector2 b){
 		return new Vector2(a.x - b.x, a.y - b.y);
 	}
+	/**
+	 * Converts the vector to a string
+	 */
+	@Override
+	public String toString(){
+		return "Vector2 (" + x + ", " + y + ")";
+	}
 }

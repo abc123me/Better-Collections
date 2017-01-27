@@ -156,4 +156,11 @@ public class Vector3 extends Vector2 implements Cloneable{
 	public static Vector3 subtract(Vector3 a, Vector3 b){
 		return new Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
 	}
+	/**
+	 * Converts the vector to a string
+	 */
+	@Override
+	public String toString(){
+		return "Vector3 (" + x + ", " + y + ", " + z + ")";
+	}
 }
