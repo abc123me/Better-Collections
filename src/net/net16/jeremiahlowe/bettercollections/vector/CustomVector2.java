@@ -1,6 +1,7 @@
 package net.net16.jeremiahlowe.bettercollections.vector;
 
 /**
+ * @deprecated
  * A custom Vector2 for storing x and y values
  * <br>Also includes special maths such as distance
  * @see Vector2

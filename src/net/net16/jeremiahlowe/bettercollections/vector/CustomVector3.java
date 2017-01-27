@@ -1,6 +1,7 @@
 package net.net16.jeremiahlowe.bettercollections.vector;
 
 /**
+ * @deprecated
  * A custom Vector3 for storing x, y, and z values
  * <br>Also includes special maths such as distance
  * @see Vector3
