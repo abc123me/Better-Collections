@@ -10,6 +10,19 @@ public class Line {
 	
 	private float yIntercept = 0;
 	private float slope = 0;
+	
+	/**
+	 * Constructor for creating a 2-dimensional line in <b>point to point</b> format
+	 * @param x1
+	 * @param y1
+	 * The first point of the line
+	 * @param x2
+	 * @param y2
+	 * The second point of the line
+	 */
+	public Line(float x1, float y1, float x2, float y2){
+		this(new Vector2(x1, y1), new Vector2(x2, y2));
+	}
 	/**
 	 * Constructor for creating a 2-dimensional line in <b>point to point</b> format
 	 * @param pos1
