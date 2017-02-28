@@ -4,6 +4,17 @@ import net.net16.jeremiahlowe.bettercollections.vector.Vector2;
 
 public class Rotation implements Cloneable{
 	/**
+	 * Constants for direction
+	 */
+	public static final Rotation NORTH = new Rotation(0);
+	public static final Rotation SOUTH = new Rotation(180);
+	public static final Rotation EAST = new Rotation(90);
+	public static final Rotation WEST = new Rotation(270);
+	public static final Rotation NORTH_EAST = new Rotation(45);
+	public static final Rotation SOUTH_EAST = new Rotation(135);
+	public static final Rotation NORTH_WEST = new Rotation(45);
+	public static final Rotation SOUTH_WEST = new Rotation(135);
+	/**
 	 * The actual rotation (in degrees [for extra accuracy])
 	 */
 	private float rotation = 0;
