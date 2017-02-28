@@ -2,7 +2,7 @@ package net.net16.jeremiahlowe.bettercollections;
 
 import net.net16.jeremiahlowe.bettercollections.vector.Vector2;
 
-public class Rotation {
+public class Rotation implements Cloneable{
 	/**
 	 * The actual rotation (in degrees [for extra accuracy])
 	 */
@@ -135,5 +135,12 @@ public class Rotation {
 	 */
 	public void rotateBy(float angle){
 		rotation = correctAngleDegrees(rotation + angle);
+	}
+	/**
+	 * Cone method
+	 */
+	@Override
+	public Rotation clone(){
+		return new Rotation(rotation);
 	}
 }
