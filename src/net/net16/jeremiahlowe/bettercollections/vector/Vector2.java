@@ -165,6 +165,23 @@ public class Vector2 implements Cloneable{
 		return new Vector2(a.x - b.x, a.y - b.y);
 	}
 	/**
+	 * Translates the vector by another vector
+	 * @param by
+	 */
+	public void translate(Vector2 by){
+		x += by.x; y += by.y;
+	}
+	/**
+	 * Translates the vector by a specific x and y value
+	 * @param x
+	 * amount to move on x axis
+	 * @param y
+	 * amount to move on y axis
+	 */
+	public void translate(float x, float y){
+		this.x += x; this.y += y; 
+	}
+	/**
 	 * Converts the vector to a string
 	 */
 	@Override

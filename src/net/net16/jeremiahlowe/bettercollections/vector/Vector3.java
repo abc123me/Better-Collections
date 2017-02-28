@@ -157,6 +157,25 @@ public class Vector3 extends Vector2 implements Cloneable{
 		return new Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
 	}
 	/**
+	 * Translates the vector by another vector
+	 * @param by
+	 */
+	public void translate(Vector3 by){
+		x += by.x; y += by.y; z += by.z;
+	}
+	/**
+	 * Translates the vector by a specific x and y value
+	 * @param x
+	 * amount to move on x axis
+	 * @param y
+	 * amount to move on y axis
+	 * @param z
+	 * amount to move on z axis
+	 */
+	public void translate(float x, float y, float z){
+		this.x += x; this.y += y; this.z += z;
+	}
+	/**
 	 * Converts the vector to a string
 	 */
 	@Override
