@@ -2,70 +2,86 @@ package net.net16.jeremiahlowe.bettercollections;
 
 import net.net16.jeremiahlowe.bettercollections.vector.Vector2;
 
-public class Line {
-	public static final Line POSITIVE = new Line(1, 0);
-	public static final Line NEGATIVE = new Line(-1, 0);
-	public static final Line VERTICAL = new Line(Float.POSITIVE_INFINITY, 0);
-	public static final Line HORIZONTAL = new Line(0, 0);
+public class Line implements Cloneable{
+	private Vector2 startPoint, endPoint;
+	private Line(){}
+	public Line(Vector2 startPoint, Vector2 endPoint){
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
+	}
+	public static Line createYIntercept(float slope, float yIntercept){
+		Line l = new Line();
+		l.startPoint = new Vector2(0, yIntercept);
+		l.endPoint = new Vector2(1, slope + yIntercept);
+		return l;
+	}
+	public static Line createXIntercept(float slope, float xIntercept){
+		Line l = new Line();
+		l.startPoint = new Vector2(xIntercept, 0);
+		l.endPoint = new Vector2(slope + xIntercept, 1);
+		return l;
+	}
+	public Vector2 getStart(){return startPoint;}
+	public Vector2 getEnd(){return endPoint;}
+	public void setStart(Vector2 startPoint) {this.startPoint = startPoint;}
+	public void setEnd(Vector2 endPoint) {this.endPoint = endPoint;}
+	public float getStartX(){return startPoint.x;}
+	public float getStartY(){return startPoint.y;}
+	public void setStartX(float x){startPoint.x = x;}
+	public void setStartY(float y){startPoint.y = y;}
+	public float getEndX(){return endPoint.x;}
+	public float getEndY(){return endPoint.y;}
+	public void setEndX(float x){endPoint.x = x;}
+	public void setEndY(float y){endPoint.y = y;}
+	public float getRun(){return endPoint.x - startPoint.x;}	
+	public float getRise(){return endPoint.y - startPoint.y;}
+	public Vector2 getDirection(){return new Vector2(getRun(), getRise());}
+	public float getSlope(){return getRise() / getRun();}
+	public void setRise(float rise){
+		endPoint = startPoint.clone();
+		endPoint.translate(0, rise);
+	}
+	public void setRun(float run){
+		endPoint = startPoint.clone();
+		endPoint.translate(run, 0);
+	}
+	public void setDirection(Vector2 dir){
+		endPoint = startPoint.clone();
+		endPoint.translate(dir);
+	}
+	public void setDirection(float x, float y){
+		endPoint = startPoint.clone();
+		endPoint.translate(x, y);
+	}
+	public void translate(float x, float y){
+		endPoint.translate(x, y);
+		startPoint.translate(x, y);
+	}
+	public void reflectX(){endPoint.x = -endPoint.x;}
+	public void reflectY(){endPoint.y = -endPoint.y;}
+	public void setRotation(Rotation r){
+		endPoint = startPoint.clone();
+		endPoint.translate(r.toDirection());
+	}
+	public Rotation getRotation(){
+		Rotation r = new Rotation();
+		r.setAngleRadians((float) atan2());
+		return r;
+	}
+	public double atan2(){
+		float x = getEndX() - getStartX();
+		float y = getEndY() - getStartY();
+		return Math.atan2(y, x);
+	}
+	public boolean sameAs(Line l){
+		return l.getSlope() == getSlope();
+	}
 	
-	private float yIntercept = 0;
-	private float slope = 0;
-	
-	/**
-	 * Constructor for creating a 2-dimensional line in <b>point to point</b> format
-	 * @param x1
-	 * @param y1
-	 * The first point of the line
-	 * @param x2
-	 * @param y2
-	 * The second point of the line
-	 */
-	public Line(float x1, float y1, float x2, float y2){
-		this(new Vector2(x1, y1), new Vector2(x2, y2));
-	}
-	/**
-	 * Constructor for creating a 2-dimensional line in <b>point to point</b> format
-	 * @param pos1
-	 * The first point of the line
-	 * @param pos2
-	 * The second point of the line
-	 */
-	public Line(Vector2 pos1, Vector2 pos2){
-		slope = (pos2.y - pos1.y) / (pos2.x - pos1.x);
-		float mx = pos1.x * slope;
-		yIntercept = pos1.y - mx;
-	}
-	/**
-	 * Constructor for creating a 2-dimensional line in <b>Y = MX + B</b> format
-	 * @param slope
-	 * The slope or m
-	 * @param yIntercept
-	 * The y-intercept or b
-	 */
-	public Line(float slope, float yIntercept){
-		this.slope = slope;
-		this.yIntercept = yIntercept;
-	}
-	/**
-	 * Method for getting y at a given x<br>
-	 * y = mx + b
-	 * @param x
-	 * The x value
-	 * @return
-	 * The y value at x
-	 */
-	public float getY(float x){
-		return slope * x + yIntercept;
-	}
-	/**
-	 * Method for getting x at a given y<br>
-	 * (y - b) / m
-	 * @param y
-	 * The y value
-	 * @return
-	 * The x value at y
-	 */
-	public float getX(float y){
-		return (y - yIntercept) / slope;
+	@Override
+	public Line clone(){
+		Line l = new Line();
+		l.startPoint = startPoint.clone();
+		l.endPoint = endPoint.clone();
+		return l;
 	}
 }

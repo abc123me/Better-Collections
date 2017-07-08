@@ -188,4 +188,7 @@ public class Vector2 implements Cloneable{
 	public String toString(){
 		return "Vector2 (" + x + ", " + y + ")";
 	}
+	public boolean sameAs(Vector2 a) {
+		return x == a.x && y == a.y;
+	}
 }
