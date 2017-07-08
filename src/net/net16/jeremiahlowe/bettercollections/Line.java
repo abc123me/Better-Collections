@@ -2,6 +2,11 @@ package net.net16.jeremiahlowe.bettercollections;
 
 import net.net16.jeremiahlowe.bettercollections.vector.Vector2;
 
+/**
+ * A line object for doing line things!
+ * @author Jeremiah Lowe
+ *
+ */
 public class Line implements Cloneable{
 	private Vector2 startPoint, endPoint;
 	private Line(){}
@@ -37,6 +42,25 @@ public class Line implements Cloneable{
 	public float getRise(){return endPoint.y - startPoint.y;}
 	public Vector2 getDirection(){return new Vector2(getRun(), getRise());}
 	public float getSlope(){return getRise() / getRun();}
+	public float getSlopeInf(){
+		float rise = getRise(), run = getRun();
+		if(run != 0) return rise / run;
+		else if(rise == 0) return 0;
+		else if(rise < 0) return Float.NEGATIVE_INFINITY;
+		else return Float.POSITIVE_INFINITY;
+	}
+	public float getYIntercept(){
+		return startPoint.y - getSlopeInf() * startPoint.x;
+	}
+	public float getXIntercept(){
+		return startPoint.x - getSlopeInf() * startPoint.y;
+	}
+	public float interpolateX(float y){
+		return getSlopeInf() * y + getXIntercept();
+	}
+	public float interpolateY(float x){
+		return getSlopeInf() * x + getYIntercept();
+	}
 	public void setRise(float rise){
 		endPoint = startPoint.clone();
 		endPoint.translate(0, rise);
@@ -75,6 +99,17 @@ public class Line implements Cloneable{
 	}
 	public boolean sameAs(Line l){
 		return l.getSlope() == getSlope();
+	}
+	public boolean isBetweeen(Line a, Line b){
+		float x = endPoint.x, y = endPoint.y;
+		float ay = a.interpolateY(x), by = b.interpolateY(x);
+		float max = Math.max(ay, by), min = Math.min(ay, by);
+		return MathUtility.isBetween(y, min, max);
+	}
+	public boolean isBetweeenOrEqualTo(Line a, Line b){
+		float ay = a.interpolateY(endPoint.x), by = b.interpolateY(endPoint.x);
+		float max = Math.max(ay, by), min = Math.min(ay, by);
+		return MathUtility.isBetweenOrEqual(endPoint.y, min, max);
 	}
 	
 	@Override
